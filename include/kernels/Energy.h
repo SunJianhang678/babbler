@@ -17,9 +17,10 @@ private:
   const MaterialProperty<Real> & _rho;
   const MaterialProperty<Real> & _Cp;
   const MaterialProperty<Real> & _beta;
+
   const Real _q;
+
   const VariableValue & _v;
-  
   const VariableGradient & _grad_p;
   const VariableValue & _p_dot;
 };

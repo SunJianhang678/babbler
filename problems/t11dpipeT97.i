@@ -2,21 +2,21 @@
   type = GeneratedMesh
   dim = 1
   xmin = 0
-  xmax = 1
+  xmax = 3
   nx = 1
 []
 
 [Variables]
   [p]
-    initial_condition = 15.5e6
+    initial_condition = 101e3
   []
   
   [v]
-    initial_condition = 1
+    initial_condition = 2
   []
   
   [T]
-    initial_condition = 533
+    initial_condition = 300
   []
 []
 
@@ -41,14 +41,15 @@
   [momentum]
     type = Momentum
     variable = p    
-    De = 0.025
+    De = 0.02
     v = v
+    
   []
   
   [energy]
     type = Energy
     variable = T
-    q = 2.037e8
+    q = 1.04e8
     v = v
     p = p
   []
@@ -79,21 +80,21 @@
     type = ADDirichletBC
     variable = v
     boundary = 'left'
-    value = 1 # m/s
+    value = 2 # m/s
   []
   
   [inlet_T]
     type = ADDirichletBC
     variable = T
     boundary = 'left'
-    value =533 # K
+    value = 300 # K
   []
   
   [outlet_p]
     type = ADDirichletBC
     variable = p
     boundary = 'right'
-    value = 15.5e6  # Pa
+    value = 101e3  # Pa
   []
 []
 
@@ -111,7 +112,7 @@
     p = p
     T = T
     v = v
-    De = 0.025
+    De = 0.02
     fp = water
   []
 []
@@ -135,32 +136,19 @@
     boundary = 'right'
     variable = T
   []
-
+  
   [outlet_drho_dT]
     type = SideAverageValue
     boundary = 'right'
     variable = drho_dT
   []
   
-  [inlet_drho_dT]
-    type = SideAverageValue
-    boundary = 'left'
-    variable = drho_dT
-
-  []
-
-  [outlet_rho]
-    type = SideAverageValue
-    variable = rho
-    boundary = 'right'
-    
-  []
 []   
 
 [Executioner]
   type = Transient
-  dt = 1
-  num_steps = 1
+  dt = 0.01
+  num_steps = 700
   solve_type = JFNK
 
   petsc_options_iname = '-pc_type -pc_hypre_type'

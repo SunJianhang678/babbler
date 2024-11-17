@@ -15,8 +15,14 @@ protected:
 
 private:
   
-  const VariableValue & _rho;
-  const VariableGradient & _grad_rho;
-  const VariableValue & _rho_dot;
+  const MaterialProperty<Real> & _rho;
+  const MaterialProperty<Real> & _drho_dT;
+  const MaterialProperty<Real> & _drho_dp;
+
+  const VariableGradient & _grad_T;
+  const VariableGradient & _grad_p;
+  const VariableValue & _T_dot;
+  const VariableValue & _p_dot;
+
   
 };
